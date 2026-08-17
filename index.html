@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CellBoost C-GAIN | Boost Every Cell</title>
   
-  <!-- Premium Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -13,15 +12,14 @@
   <style>
     :root {
       --bg-pitch: #000000;
-      --bg-dark: #07080a;
       --bg-card: #0d0f14;
       --bg-light: #f5f5f7;
       --card-white: #ffffff;
       --accent-gold: #f29c2b;
-      --accent-gold-glow: rgba(242, 156, 43, 0.4);
-      --text-white: #f5f5f7;
+      --accent-gold-glow: rgba(242, 156, 43, 0.45);
+      --text-white: #ffffff;
       --text-muted: #8e8e93;
-      --text-dark: #1d1d1f;
+      --text-dark: #14161b;
       --border-light: rgba(0, 0, 0, 0.08);
       --radius-lg: 24px;
     }
@@ -31,10 +29,6 @@
       margin: 0;
       padding: 0;
       font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
@@ -47,24 +41,6 @@
       min-height: 100vh;
     }
 
-    /* Top Announcement Bar */
-    .top-banner {
-      background: #000000;
-      color: #8e8e93;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      text-align: center;
-      padding: 0.65rem 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      z-index: 210;
-      position: relative;
-    }
-    .top-banner span {
-      color: var(--accent-gold);
-    }
-
     /* Navigation Bar */
     nav {
       position: sticky;
@@ -73,10 +49,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.15rem 8%;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
+      padding: 1.2rem 8%;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
@@ -85,7 +61,6 @@
       font-weight: 800;
       letter-spacing: -0.5px;
       color: #fff;
-      text-decoration: none;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -129,7 +104,7 @@
 
     .page-view.active-page {
       display: block;
-      animation: fadeIn 0.4s ease forwards;
+      animation: fadeIn 0.35s ease forwards;
     }
 
     @keyframes fadeIn {
@@ -137,110 +112,105 @@
       to { opacity: 1; }
     }
 
-    /* ================= FULL-BLEED BACKDROP HERO ================= */
+    /* ================= FULL BACKDROP HERO ================= */
     .hero {
       position: relative;
-      min-height: calc(100vh - 85px);
+      height: calc(100vh - 75px);
+      min-height: 620px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      padding: 6rem 8% 2.5rem;
+      justify-content: center;
+      padding: 0 8%;
       background-color: var(--bg-pitch);
       overflow: hidden;
     }
 
-    /* Backdrop Can (Rotated & Scaled directly from can.png) */
+    /* Exact Diagonal Macro Backdrop using can.png */
     .hero-backdrop-container {
       position: absolute;
-      top: 0;
-      right: -5%;
-      width: 65%;
-      height: 100%;
+      top: -20%;
+      right: -25%;
+      width: 110%;
+      height: 140%;
       pointer-events: none;
       z-index: 1;
       display: flex;
       align-items: center;
-      justify-content: center;
-      overflow: hidden;
+      justify-content: flex-end;
     }
 
-    .hero-backdrop-container::after {
+    .hero-backdrop-container::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.6) 40%, transparent 80%),
-                  linear-gradient(180deg, #000000 0%, transparent 15%, transparent 85%, #000000 100%);
+      background: 
+        linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.92) 35%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0.95) 100%),
+        linear-gradient(180deg, #000000 0%, transparent 15%, transparent 85%, #000000 100%);
       z-index: 2;
     }
 
     .hero-backdrop-img {
-      height: 140%;
+      height: 190%;
       width: auto;
+      max-width: none;
       object-fit: contain;
-      transform: rotate(-24deg) translateY(5%) scale(1.15);
-      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.9));
-      opacity: 0.9;
+      transform: rotate(-36deg) translateX(-10%) translateY(5%) scale(1.6);
+      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.95)) contrast(1.1);
+      opacity: 0.95;
     }
 
     .hero-content {
       position: relative;
       z-index: 5;
-      max-width: 580px;
-      margin-top: auto;
-      margin-bottom: auto;
+      max-width: 560px;
     }
 
     .hero h1 {
-      font-size: clamp(3.4rem, 7.5vw, 5.5rem);
+      font-size: clamp(3.2rem, 6.5vw, 5.2rem);
       font-weight: 900;
-      line-height: 1.0;
-      letter-spacing: -2px;
+      line-height: 1.02;
+      letter-spacing: -1.8px;
       color: #ffffff;
-      margin-bottom: 1.4rem;
-      text-shadow: 0 4px 24px rgba(0,0,0,0.8);
+      margin-bottom: 1.2rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.9);
     }
 
     .hero p {
-      font-size: clamp(1.1rem, 2vw, 1.25rem);
+      font-size: clamp(1.05rem, 1.8vw, 1.2rem);
       color: #d1d5db;
-      line-height: 1.55;
-      margin-bottom: 2.2rem;
+      line-height: 1.5;
+      margin-bottom: 2rem;
       font-weight: 400;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
-      max-width: 500px;
+      max-width: 490px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.95);
     }
 
     .btn-pill {
       display: inline-block;
-      background: #ffffff;
+      background: #f0ede6;
       color: #000000;
-      font-weight: 800;
+      font-weight: 700;
       font-size: 0.95rem;
-      padding: 0.95rem 2.4rem;
+      padding: 0.9rem 2.2rem;
       border-radius: 50px;
       border: none;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
-      z-index: 5;
+      transition: transform 0.2s ease, background 0.2s ease;
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.12);
     }
 
     .btn-pill:hover {
-      background: var(--accent-gold);
-      color: #000;
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 8px 30px var(--accent-gold-glow);
+      background: #ffffff;
+      transform: scale(1.04);
     }
 
-    /* Scroll Arrow */
+    /* Bounce Scroll Down Indicator */
     .hero-bottom-bar {
-      position: relative;
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      padding-top: 1rem;
     }
 
     .scroll-arrow-wrap {
@@ -248,15 +218,15 @@
       flex-direction: column;
       align-items: center;
       color: #d1d5db;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       gap: 6px;
       cursor: pointer;
       transition: all 0.2s ease;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 0.5rem 1.2rem;
+      background: rgba(0, 0, 0, 0.55);
+      padding: 0.45rem 1.2rem;
       border-radius: 30px;
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -264,17 +234,16 @@
 
     .scroll-arrow-wrap:hover {
       color: #fff;
-      transform: translateY(2px);
-      border-color: rgba(242, 156, 43, 0.4);
+      border-color: rgba(242, 156, 43, 0.5);
     }
 
     .arrow-icon {
       width: 18px;
       height: 18px;
-      animation: smoothBounce 2.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+      animation: indicatorBounce 2s infinite ease-in-out;
     }
 
-    @keyframes smoothBounce {
+    @keyframes indicatorBounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(6px); }
     }
@@ -283,7 +252,7 @@
     .formula-section {
       background-color: var(--bg-light);
       color: var(--text-dark);
-      padding: 8rem 8% 7rem;
+      padding: 7rem 8% 6rem;
       position: relative;
     }
 
@@ -599,8 +568,9 @@
         grid-template-columns: 1fr;
       }
       .hero-backdrop-container {
-        width: 80%;
-        opacity: 0.5;
+        width: 130%;
+        right: -30%;
+        opacity: 0.55;
       }
     }
 
@@ -609,7 +579,7 @@
         display: none;
       }
       .hero h1 {
-        font-size: 3.2rem;
+        font-size: 3rem;
       }
       footer {
         flex-direction: column;
@@ -624,18 +594,13 @@
 </head>
 <body>
 
-  <!-- Top Announcement Bar -->
-  <div class="top-banner">
-    ⚡ Free US Shipping On Orders $55+ <span>| Made in California</span>
-  </div>
-
   <!-- Navigation -->
   <nav>
     <div class="logo" onclick="switchPage('home')">
       CellBoost <div class="dot"></div>
     </div>
     <ul>
-      <li><a id="nav-home" class="active-link" onclick="switchPage('home'); smoothScrollTo('#formula');">Formula</a></li>
+      <li><a id="nav-home" class="active-link" onclick="switchPage('home'); bouncyScrollTo('#formula');">Formula</a></li>
       <li><a id="nav-benefits" onclick="switchPage('benefits')">Benefits</a></li>
       <li><a id="nav-about" onclick="switchPage('about')">About</a></li>
       <li><a id="nav-locator" onclick="switchPage('locator')">Store Locator</a></li>
@@ -643,10 +608,10 @@
     <button class="btn-pill" style="padding: 0.55rem 1.4rem; font-size: 0.82rem;" onclick="switchPage('locator')">Find In Store</button>
   </nav>
 
-  <!-- ================= 1. HOME / LANDING VIEW ================= -->
+  <!-- ================= 1. HOME VIEW ================= -->
   <div id="page-home" class="page-view active-page">
     
-    <!-- Full-Bleed Backdrop Hero with can.png -->
+    <!-- Hero with can.png as the Macro Backdrop -->
     <section class="hero">
       <div class="hero-backdrop-container">
         <img src="can.png" alt="CellBoost C-GAIN Can" class="hero-backdrop-img" />
@@ -654,14 +619,14 @@
       
       <div class="hero-content">
         <h1>Boost Every Cell</h1>
-        <p>More than creatine. A complete performance drink designed to fuel strength, support recovery, and keep you hydrated.</p>
-        <button class="btn-pill" onclick="smoothScrollTo('#formula')">Explore Formula</button>
+        <p>More than creatine. A complete performance drink designed to fuel strength, support recovery, and keep you hydrated</p>
+        <button class="btn-pill" onclick="bouncyScrollTo('#formula')">Explore Formula</button>
       </div>
 
-      <!-- Eased Scroll Arrow -->
+      <!-- Arrow with Bouncy Scroll Action -->
       <div class="hero-bottom-bar">
-        <div class="scroll-arrow-wrap" onclick="smoothScrollTo('#formula')">
-          <span>Formula</span>
+        <div class="scroll-arrow-wrap" onclick="bouncyScrollTo('#formula')">
+          <span>Explore Formula</span>
           <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 9l6 6 6-6"/>
           </svg>
@@ -676,7 +641,7 @@
         <p>Five clinically-backed ingredients working together for strength, recovery, and focus.</p>
       </div>
 
-      <!-- 3D Interactive Rotating Can -->
+      <!-- 3D Rotating Can -->
       <div class="interactive-stage">
         <div class="can-stage">
           <div class="can-3d-box" id="canStage">
@@ -789,10 +754,10 @@
     </div>
   </footer>
 
-  <!-- Scripts: Custom Smooth Scroll & Can Animations -->
+  <!-- Scripts -->
   <script>
-    // Smooth Easing Scroll Animation
-    function smoothScrollTo(targetSelector) {
+    // Physics-Based Bouncy Scroll Transition (Overshoot & Settle)
+    function bouncyScrollTo(targetSelector) {
       if (!document.getElementById('page-home').classList.contains('active-page')) {
         switchPage('home');
       }
@@ -801,29 +766,33 @@
         const targetElement = document.querySelector(targetSelector);
         if (!targetElement) return;
 
-        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 40;
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        const duration = 900;
+        const targetY = targetElement.getBoundingClientRect().top + window.pageYOffset;
+        const startY = window.pageYOffset;
+        const totalDistance = targetY - startY;
+        const duration = 1000;
         let startTime = null;
 
-        function easeInOutCubic(t, b, c, d) {
-          t /= d / 2;
-          if (t < 1) return c / 2 * t * t * t + b;
-          t -= 2;
-          return c / 2 * (t * t * t + 2) + b;
+        function easeOutBack(x) {
+          const c1 = 1.70158;
+          const c3 = c1 + 1;
+          return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
         }
 
-        function animation(currentTime) {
-          if (startTime === null) startTime = currentTime;
-          const timeElapsed = currentTime - startTime;
-          const run = easeInOutCubic(timeElapsed, startPosition, distance, duration);
-          window.scrollTo(0, run);
-          if (timeElapsed < duration) requestAnimationFrame(animation);
+        function step(currentTime) {
+          if (!startTime) startTime = currentTime;
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const easeProgress = easeOutBack(progress);
+          
+          window.scrollTo(0, startY + totalDistance * easeProgress);
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          }
         }
 
-        requestAnimationFrame(animation);
-      }, 100);
+        requestAnimationFrame(step);
+      }, 50);
     }
 
     // Tab Switcher
@@ -844,7 +813,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 3D Can Rotation & Interactive Card Logic
+    // 3D Can Rotation
     function activateIngredient(yDeg, zDeg, title, detail, clickedElement) {
       const can = document.getElementById('canStage');
       const bubble = document.getElementById('activeDetail');
