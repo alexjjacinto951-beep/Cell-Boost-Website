@@ -20,7 +20,7 @@
       --accent-gold: #f29c2b;
       --accent-gold-glow: rgba(242, 156, 43, 0.4);
       --text-white: #f5f5f7;
-      --text-muted: #86868b;
+      --text-muted: #8e8e93;
       --text-dark: #1d1d1f;
       --border-light: rgba(0, 0, 0, 0.08);
       --radius-lg: 24px;
@@ -47,18 +47,22 @@
       min-height: 100vh;
     }
 
-    /* Top Offer Ticker */
+    /* Top Announcement Bar */
     .top-banner {
       background: #000000;
-      color: #86868b;
+      color: #8e8e93;
       font-size: 0.8rem;
-      font-weight: 500;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
       text-align: center;
       padding: 0.65rem 1rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 210;
+      position: relative;
     }
     .top-banner span {
-      color: #f5f5f7;
+      color: var(--accent-gold);
     }
 
     /* Navigation Bar */
@@ -69,15 +73,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.1rem 8%;
+      padding: 1.15rem 8%;
       background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .logo {
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       font-weight: 800;
       letter-spacing: -0.5px;
       color: #fff;
@@ -121,70 +125,98 @@
     .page-view {
       display: none;
       flex: 1;
-      animation: fadeIn 0.4s ease forwards;
     }
 
     .page-view.active-page {
       display: block;
+      animation: fadeIn 0.4s ease forwards;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    /* ================= HOME / LANDING VIEW ================= */
+    /* ================= FULL-BLEED BACKDROP HERO ================= */
     .hero {
       position: relative;
-      min-height: 90vh;
+      min-height: calc(100vh - 85px);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      text-align: center;
-      padding: 4rem 1.5rem 2rem;
-      background: radial-gradient(circle at 50% 65%, rgba(242, 156, 43, 0.12) 0%, transparent 60%);
+      justify-content: space-between;
+      padding: 6rem 8% 2.5rem;
+      background-color: var(--bg-pitch);
       overflow: hidden;
     }
 
-    .badge {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--accent-gold);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
+    /* Backdrop Can (Rotated & Scaled directly from can.png) */
+    .hero-backdrop-container {
+      position: absolute;
+      top: 0;
+      right: -5%;
+      width: 65%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-backdrop-container::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.6) 40%, transparent 80%),
+                  linear-gradient(180deg, #000000 0%, transparent 15%, transparent 85%, #000000 100%);
+      z-index: 2;
+    }
+
+    .hero-backdrop-img {
+      height: 140%;
+      width: auto;
+      object-fit: contain;
+      transform: rotate(-24deg) translateY(5%) scale(1.15);
+      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.9));
+      opacity: 0.9;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      max-width: 580px;
+      margin-top: auto;
+      margin-bottom: auto;
     }
 
     .hero h1 {
-      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-size: clamp(3.4rem, 7.5vw, 5.5rem);
       font-weight: 900;
-      line-height: 1.05;
+      line-height: 1.0;
       letter-spacing: -2px;
       color: #ffffff;
-      margin-bottom: 1rem;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(135deg, #ffffff 40%, var(--accent-gold) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.4rem;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.8);
     }
 
     .hero p {
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
-      color: var(--text-muted);
-      max-width: 620px;
-      line-height: 1.5;
-      margin-bottom: 1.8rem;
+      font-size: clamp(1.1rem, 2vw, 1.25rem);
+      color: #d1d5db;
+      line-height: 1.55;
+      margin-bottom: 2.2rem;
+      font-weight: 400;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+      max-width: 500px;
     }
 
     .btn-pill {
+      display: inline-block;
       background: #ffffff;
       color: #000000;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.95rem;
-      padding: 0.85rem 2.2rem;
+      padding: 0.95rem 2.4rem;
       border-radius: 50px;
       border: none;
       cursor: pointer;
@@ -196,80 +228,73 @@
     .btn-pill:hover {
       background: var(--accent-gold);
       color: #000;
-      transform: scale(1.04);
+      transform: translateY(-2px) scale(1.02);
       box-shadow: 0 8px 30px var(--accent-gold-glow);
     }
 
-    .hero-backdrop {
-      margin-top: 1.5rem;
-      width: 100%;
-      max-width: 700px;
+    /* Scroll Arrow */
+    .hero-bottom-bar {
+      position: relative;
+      z-index: 5;
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-
-    .hero-backdrop img {
-      max-height: 440px;
-      width: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.9));
-      animation: canFloat 4s ease-in-out infinite;
-    }
-
-    @keyframes canFloat {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+      width: 100%;
+      padding-top: 1rem;
     }
 
     .scroll-arrow-wrap {
-      margin-top: 1rem;
-      display: flex;
+      display: inline-flex;
       flex-direction: column;
       align-items: center;
-      color: var(--text-muted);
+      color: #d1d5db;
       font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 1px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
       gap: 6px;
       cursor: pointer;
-      transition: color 0.2s ease;
-      z-index: 5;
+      transition: all 0.2s ease;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .scroll-arrow-wrap:hover {
       color: #fff;
+      transform: translateY(2px);
+      border-color: rgba(242, 156, 43, 0.4);
     }
 
     .arrow-icon {
-      width: 26px;
-      height: 26px;
-      animation: bounce 2s infinite;
+      width: 18px;
+      height: 18px;
+      animation: smoothBounce 2.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(8px); }
-      60% { transform: translateY(4px); }
+    @keyframes smoothBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
     }
 
-    /* Formula / Ingredients Section */
+    /* ================= FORMULA SECTION ================= */
     .formula-section {
       background-color: var(--bg-light);
       color: var(--text-dark);
-      padding: 7rem 8% 6rem;
+      padding: 8rem 8% 7rem;
       position: relative;
     }
 
     .section-title {
       text-align: center;
-      max-width: 650px;
-      margin: 0 auto 3rem;
+      max-width: 680px;
+      margin: 0 auto 3.5rem;
     }
 
     .section-title h2 {
-      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
       font-weight: 900;
       letter-spacing: -1.5px;
       margin-bottom: 0.8rem;
@@ -277,10 +302,11 @@
 
     .section-title p {
       color: #6b7280;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 500;
     }
 
+    /* 3D Interactive Stage */
     .interactive-stage {
       display: flex;
       flex-direction: column;
@@ -309,7 +335,7 @@
       height: 100%;
       width: auto;
       object-fit: contain;
-      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.25));
+      filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.25));
     }
 
     .active-detail-bubble {
@@ -433,7 +459,7 @@
       color: #222;
     }
 
-    /* ================= SEPARATE SUBPAGES STYLING ================= */
+    /* ================= SUBPAGE VIEWS ================= */
     .subpage-container {
       max-width: 1050px;
       margin: 5rem auto;
@@ -460,7 +486,6 @@
       line-height: 1.6;
     }
 
-    /* Benefits Grid */
     .benefits-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -499,11 +524,10 @@
       font-size: 0.95rem;
     }
 
-    /* About Section Card */
     .about-box {
       background: var(--bg-card);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 3rem 2.5rem;
+      padding: 3.5rem 2.8rem;
       border-radius: 24px;
       text-align: left;
       margin: 0 auto;
@@ -521,7 +545,6 @@
       margin-bottom: 0;
     }
 
-    /* Store Locator Card */
     .locator-card {
       background: var(--bg-card);
       border: 2px dashed rgba(242, 156, 43, 0.4);
@@ -557,6 +580,7 @@
       color: var(--text-muted);
       background: #000000;
       margin-top: auto;
+      z-index: 10;
     }
 
     footer a {
@@ -574,11 +598,18 @@
       .ingredients-grid, .benefits-grid {
         grid-template-columns: 1fr;
       }
+      .hero-backdrop-container {
+        width: 80%;
+        opacity: 0.5;
+      }
     }
 
     @media (max-width: 768px) {
       nav ul {
         display: none;
+      }
+      .hero h1 {
+        font-size: 3.2rem;
       }
       footer {
         flex-direction: column;
@@ -593,9 +624,9 @@
 </head>
 <body>
 
-  <!-- Top Offer Bar -->
+  <!-- Top Announcement Bar -->
   <div class="top-banner">
-    Free US Shipping On Orders $55+ <span>| Made in California</span>
+    ⚡ Free US Shipping On Orders $55+ <span>| Made in California</span>
   </div>
 
   <!-- Navigation -->
@@ -604,7 +635,7 @@
       CellBoost <div class="dot"></div>
     </div>
     <ul>
-      <li><a id="nav-home" class="active-link" onclick="switchPage('home'); scrollToFormula();">Formula</a></li>
+      <li><a id="nav-home" class="active-link" onclick="switchPage('home'); smoothScrollTo('#formula');">Formula</a></li>
       <li><a id="nav-benefits" onclick="switchPage('benefits')">Benefits</a></li>
       <li><a id="nav-about" onclick="switchPage('about')">About</a></li>
       <li><a id="nav-locator" onclick="switchPage('locator')">Store Locator</a></li>
@@ -612,27 +643,29 @@
     <button class="btn-pill" style="padding: 0.55rem 1.4rem; font-size: 0.82rem;" onclick="switchPage('locator')">Find In Store</button>
   </nav>
 
-  <!-- ================= 1. HOME / LANDING PAGE VIEW ================= -->
+  <!-- ================= 1. HOME / LANDING VIEW ================= -->
   <div id="page-home" class="page-view active-page">
-    <!-- Hero Section with Backdrop Can -->
+    
+    <!-- Full-Bleed Backdrop Hero with can.png -->
     <section class="hero">
-      <div class="badge">Performance Formula</div>
-      <h1>Boost <span>Every Cell</span></h1>
-      <p>More than creatine. A complete performance drink designed to fuel strength, support recovery, and keep you hydrated.</p>
+      <div class="hero-backdrop-container">
+        <img src="can.png" alt="CellBoost C-GAIN Can" class="hero-backdrop-img" />
+      </div>
       
-      <button class="btn-pill" onclick="scrollToFormula()">Explore Formula</button>
-
-      <!-- Backdrop Can Graphic -->
-      <div class="hero-backdrop">
-        <img src="can.png" alt="CellBoost C-GAIN Backdrop" />
+      <div class="hero-content">
+        <h1>Boost Every Cell</h1>
+        <p>More than creatine. A complete performance drink designed to fuel strength, support recovery, and keep you hydrated.</p>
+        <button class="btn-pill" onclick="smoothScrollTo('#formula')">Explore Formula</button>
       </div>
 
-      <!-- Downward Scroll Arrow -->
-      <div class="scroll-arrow-wrap" onclick="scrollToFormula()">
-        <span>Formula</span>
-        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 9l6 6 6-6"/>
-        </svg>
+      <!-- Eased Scroll Arrow -->
+      <div class="hero-bottom-bar">
+        <div class="scroll-arrow-wrap" onclick="smoothScrollTo('#formula')">
+          <span>Formula</span>
+          <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </div>
       </div>
     </section>
 
@@ -643,7 +676,7 @@
         <p>Five clinically-backed ingredients working together for strength, recovery, and focus.</p>
       </div>
 
-      <!-- 3D Interactive Rotating Can Stage -->
+      <!-- 3D Interactive Rotating Can -->
       <div class="interactive-stage">
         <div class="can-stage">
           <div class="can-3d-box" id="canStage">
@@ -692,7 +725,7 @@
     </section>
   </div>
 
-  <!-- ================= 2. BENEFITS PAGE VIEW ================= -->
+  <!-- ================= 2. BENEFITS VIEW ================= -->
   <div id="page-benefits" class="page-view">
     <div class="subpage-container">
       <h1>Helps You <span>Dominate</span></h1>
@@ -718,7 +751,7 @@
     </div>
   </div>
 
-  <!-- ================= 3. ABOUT PAGE VIEW ================= -->
+  <!-- ================= 3. ABOUT VIEW ================= -->
   <div id="page-about" class="page-view">
     <div class="subpage-container">
       <h1>Our <span>Mission</span></h1>
@@ -732,7 +765,7 @@
     </div>
   </div>
 
-  <!-- ================= 4. STORE LOCATOR PAGE VIEW ================= -->
+  <!-- ================= 4. STORE LOCATOR VIEW ================= -->
   <div id="page-locator" class="page-view">
     <div class="subpage-container">
       <h1>Where To <span>Buy</span></h1>
@@ -745,7 +778,7 @@
     </div>
   </div>
 
-  <!-- Global Footer -->
+  <!-- Footer -->
   <footer>
     <div>&copy; 2026 CellBoost Inc. All rights reserved. Made in California.</div>
     <div>
@@ -756,56 +789,73 @@
     </div>
   </footer>
 
-  <!-- Page Routing & Animation Script -->
+  <!-- Scripts: Custom Smooth Scroll & Can Animations -->
   <script>
-    // Navigation / Page switcher
+    // Smooth Easing Scroll Animation
+    function smoothScrollTo(targetSelector) {
+      if (!document.getElementById('page-home').classList.contains('active-page')) {
+        switchPage('home');
+      }
+
+      setTimeout(() => {
+        const targetElement = document.querySelector(targetSelector);
+        if (!targetElement) return;
+
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 40;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        const duration = 900;
+        let startTime = null;
+
+        function easeInOutCubic(t, b, c, d) {
+          t /= d / 2;
+          if (t < 1) return c / 2 * t * t * t + b;
+          t -= 2;
+          return c / 2 * (t * t * t + 2) + b;
+        }
+
+        function animation(currentTime) {
+          if (startTime === null) startTime = currentTime;
+          const timeElapsed = currentTime - startTime;
+          const run = easeInOutCubic(timeElapsed, startPosition, distance, duration);
+          window.scrollTo(0, run);
+          if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+
+        requestAnimationFrame(animation);
+      }, 100);
+    }
+
+    // Tab Switcher
     function switchPage(pageId) {
-      // Hide all pages
       document.querySelectorAll('.page-view').forEach(view => {
         view.classList.remove('active-page');
       });
 
-      // Show selected page
       const selectedPage = document.getElementById(`page-${pageId}`);
       if (selectedPage) {
         selectedPage.classList.add('active-page');
       }
 
-      // Update active nav links
       document.querySelectorAll('nav a').forEach(link => link.classList.remove('active-link'));
       const activeLink = document.getElementById(`nav-${pageId}`);
       if (activeLink) activeLink.classList.add('active-link');
 
-      // Scroll to top when changing views
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Scroll directly to Formula on homepage
-    function scrollToFormula() {
-      if (!document.getElementById('page-home').classList.contains('active-page')) {
-        switchPage('home');
-        setTimeout(() => {
-          document.getElementById('formula').scrollIntoView({ behavior: 'smooth' });
-        }, 150);
-      } else {
-        document.getElementById('formula').scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-
-    // 3D Can interactive animations
+    // 3D Can Rotation & Interactive Card Logic
     function activateIngredient(yDeg, zDeg, title, detail, clickedElement) {
       const can = document.getElementById('canStage');
       const bubble = document.getElementById('activeDetail');
       const bubbleText = document.getElementById('bubbleText');
 
-      // 3D Spin & Scale Pop on Can
       can.style.transform = `rotateY(${yDeg}deg) rotateZ(${zDeg}deg) scale(1.12)`;
       
       setTimeout(() => {
         can.style.transform = `rotateY(${yDeg}deg) rotateZ(${zDeg * 0.25}deg) scale(1)`;
       }, 350);
 
-      // Bubble transitions
       bubble.style.transform = 'translateY(-6px) scale(0.98)';
       bubble.style.opacity = '0.7';
 
@@ -815,7 +865,6 @@
         bubble.style.opacity = '1';
       }, 200);
 
-      // Card active highlight
       document.querySelectorAll('.card').forEach(card => card.classList.remove('active'));
       clickedElement.classList.add('active');
     }
